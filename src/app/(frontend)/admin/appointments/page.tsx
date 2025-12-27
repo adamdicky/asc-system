@@ -1,7 +1,11 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import { AdminNavbar } from '@/components/ascAdminBar'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Calendar } from '@/components/ui/calendar'
 import { AppointmentList } from '@/components/ascAppointmentList'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 const initialAppointments = [
   { id: 1, customer: 'Ahmad bin Ali', plate: 'VCE 1234', brand: 'Proton', model: 'Saga', date: '2025-12-28T09:00:00', status: 'New' },
@@ -26,63 +30,69 @@ const initialAppointments = [
   { id: 20, customer: 'Jessica Lim', plate: 'VCF 8080', brand: 'Volkswagen', model: 'Golf', date: '2026-01-10T16:45:00', status: 'New' },
 ]
 
-export default function AdminDashboard() {
+export default function AppointmentManagementPage() {
+  const [date, setDate] = useState<Date | undefined>(undefined)
+
+  // Logic to find which dates have appointments for the "circle color" indicators
+  const appointmentDates = initialAppointments.map(a => new Date(a.date).toDateString())
+
+  // Filter logic: show ALL if no date selected, otherwise filter by date
+  const filteredData = date 
+    ? initialAppointments.filter(a => new Date(a.date).toDateString() === date.toDateString())
+    : initialAppointments
+
   return (
-    <div className="min-h-screen bg-muted/20">
+    <div className="min-h-screen bg-muted/20 pb-10">
       <AdminNavbar />
-      <main className="container py-8">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight">Dashboard Overview</h1>
-          <p className="text-muted-foreground">
-            Welcome back, Admin. Here is the operational status for today.
-          </p>
+      <main className="container py-8 space-y-8">
+        <header className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold tracking-tight">Appointment Bookings</h1>
+          <p className="text-muted-foreground text-sm">Welcome back, Admin. Manage and review upcoming service appointments across the facility.</p>
         </header>
 
-        {/* Dashboard Metrics (US004 Visualization) */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">New Appointments</CardTitle>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Calendar Section (Left) */}
+          <Card className="lg:col-span-4 shadow-md">
+            <CardHeader className="pb-3 border-b">
+              <CardTitle className="text-lg">Service Calendar</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-green-600">12</div>
-              <p className="text-xs text-muted-foreground">+2 since 9:00 AM</p>
+            <CardContent className="p-4 flex flex-col items-center">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                className="rounded-md border-none"
+                modifiers={{
+                  hasAppointment: (d) => appointmentDates.includes(d.toDateString())
+                }}
+                modifiersStyles={{
+                  hasAppointment: { 
+                    fontWeight: 'bold', 
+                    textDecoration: 'underline',
+                    color: 'hsl(var(--primary))'
+                  }
+                }}
+              />
+              {date && (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="mt-4 text-xs" 
+                  onClick={() => setDate(undefined)}
+                >
+                  Clear Selection (Show All)
+                </Button>
+              )}
             </CardContent>
           </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Ongoing Job Cards</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-600">5</div>
-              <p className="text-xs text-muted-foreground">In Progress</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Low Stock Alerts</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-red-600">3</div>
-              <p className="text-xs text-muted-foreground">Spare parts below 10 units</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">RM 1,240.00</div>
-              <p className="text-xs text-muted-foreground">Today's billing</p>
-            </CardContent>
-          </Card>
-        </div>
 
-        <div className="space-y-4 pt-8">
-          <AppointmentList
-            data={initialAppointments}
-            title='Recent Appointment Bookings'
-          />
+          {/* List Section (Right/Bottom) */}
+          <div className="lg:col-span-8">
+            <AppointmentList 
+              data={filteredData} 
+              title={date ? `Appointments for ${date.toLocaleDateString('en-GB')}` : "All Scheduled Appointments"} 
+            />
+          </div>
         </div>
       </main>
     </div>
