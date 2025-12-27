@@ -47,7 +47,7 @@ export default function AppointmentManagementPage() {
       <main className="container py-8 space-y-8">
         <header className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight">Appointment Bookings</h1>
-          <p className="text-muted-foreground text-sm">Welcome back, Admin. Manage and review upcoming service appointments across the facility.</p>
+          <p className="text-muted-foreground text-sm">Welcome back, admin. Manage and review upcoming service appointments across the facility.</p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
