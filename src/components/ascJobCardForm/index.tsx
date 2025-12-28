@@ -39,7 +39,7 @@ export const JobCardForm = ({ data, isOpen, onClose }: JobCardFormProps) => {
                 {({ loading }) => (
                   <Button size="sm" variant="outline" disabled={loading} className="gap-2">
                     <Download className="w-4 h-4" />
-                    {loading ? 'Preparing...' : 'Export PDF'}
+                    {loading ? 'Preparing...' : 'Export Job Card'}
                   </Button>
                 )}
               </PDFDownloadLink>

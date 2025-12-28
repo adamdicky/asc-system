@@ -10,7 +10,7 @@ const navLinks = [
   { name: 'Customer Registry', href: '/admin/customer-registry' },
   { name: 'Appointment Bookings', href: '/admin/appointments' },
   { name: 'Job Cards', href: '/admin/jobcards' },
-  { name: 'Billing', href: '/admin/billing' },
+  { name: 'Billing', href: '/admin/billings' },
   { name: 'Analytics', href: '/admin/analytics' },
 ]
 

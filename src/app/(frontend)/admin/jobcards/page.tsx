@@ -28,7 +28,7 @@ const mockJobCards: JobCardData[] = [
   { id: '17', job_card_id: 'JC-2025-017', customer_name: 'Farah Quinn', plate_no: 'SAP 2025', brand: 'Hyundai', model: 'Ioniq 5', date_in: '2026-01-07T10:30:00', status: 'In Progress', phone_no: '014-6667778', time_in: '10:30 AM', mileage: 1500, customer_points: ['Charging issue'], service_advisor_remark: 'Testing ICCU' },
   { id: '18', job_card_id: 'JC-2025-018', customer_name: 'Lee Zii Jia', plate_no: 'LZJ 99', brand: 'Kia', model: 'EV6', date_in: '2026-01-08T14:00:00', status: 'Completed', phone_no: '015-7778889', time_in: '02:00 PM', mileage: 5000, customer_points: ['Tire pressure sensor'], service_advisor_remark: 'Recalibrated' },
   { id: '19', job_card_id: 'JC-2025-019', customer_name: 'Nordin Ahmad', plate_no: 'WRA 3210', brand: 'Perodua', model: 'Bezza', date_in: '2026-01-09T09:15:00', status: 'In Progress', phone_no: '016-8889990', time_in: '09:15 AM', mileage: 44000, customer_points: ['Windshield crack'], service_advisor_remark: 'Glass repair in progress' },
-  { id: '20', job_card_id: 'JC-2025-020', customer_name: 'Jessica Lim', plate_no: 'VCF 8080', brand: 'Volkswagen', model: 'Golf', date_in: '2026-01-10T16:45:00', status: 'Pending', phone_no: '017-9990001', time_in: '04:45 PM', mileage: 25000, customer_points: ['DSG Jerking'], service_advisor_remark: 'Transmission scan scheduled' },
+  { id: '20', job_card_id: 'JC-2025-020', customer_name: 'Jessica Lim', plate_no: 'VCF 8080', brand: 'Volkswagen', model: 'Golf', date_in: '2026-01-10T16:45:00', status: 'Pending', phone_no: '017-9990001', time_in: '04:45 PM', mileage: 25000, customer_points: ['DSG Jerking', 'AMP Leaking'], service_advisor_remark: 'Transmission scan scheduled' },
 ];
 
 export default function JobCardPage() {
