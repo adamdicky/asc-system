@@ -33,7 +33,7 @@ const initialAppointments = [
 export default function AppointmentManagementPage() {
   const [date, setDate] = useState<Date | undefined>(undefined)
 
-  // Logic to find which dates have appointments for the "circle color" indicators
+  // Logic to find which dates have appointments
   const appointmentDates = initialAppointments.map(a => new Date(a.date).toDateString())
 
   // Filter logic: show ALL if no date selected, otherwise filter by date
@@ -47,12 +47,14 @@ export default function AppointmentManagementPage() {
       <main className="container py-8 space-y-8">
         <header className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight">Appointment Bookings</h1>
-          <p className="text-muted-foreground text-sm">Welcome back, admin. Manage and review upcoming service appointments across the facility.</p>
+          <p className="text-muted-foreground text-sm">
+            Welcome back, Admin. Manage and review upcoming service appointments across the facility.
+          </p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Calendar Section (Left) */}
-          <Card className="lg:col-span-4 shadow-md">
+          <Card className="lg:col-span-4 shadow-md border-none ring-1 ring-border">
             <CardHeader className="pb-3 border-b">
               <CardTitle className="text-lg">Service Calendar</CardTitle>
             </CardHeader>
@@ -61,23 +63,27 @@ export default function AppointmentManagementPage() {
                 mode="single"
                 selected={date}
                 onSelect={setDate}
+                // Help user see the sample data immediately
+                defaultMonth={new Date(2025, 11)} 
                 className="rounded-md border-none"
                 modifiers={{
                   hasAppointment: (d) => appointmentDates.includes(d.toDateString())
                 }}
+                // MODIFIED: Circular highlight in bright blue
                 modifiersStyles={{
                   hasAppointment: { 
-                    fontWeight: 'bold', 
-                    textDecoration: 'underline',
-                    color: 'hsl(var(--primary))'
+                    backgroundColor: '#76E599', // Bright Blue (Tailwind Blue 500)
+                    color: 'white',
+                    borderRadius: '50%',
+                    fontWeight: 'bold'
                   }
                 }}
               />
               {date && (
                 <Button 
-                  variant="ghost" 
+                  variant="outline" 
                   size="sm" 
-                  className="mt-4 text-xs" 
+                  className="mt-6 w-full text-xs font-semibold" 
                   onClick={() => setDate(undefined)}
                 >
                   Clear Selection (Show All)

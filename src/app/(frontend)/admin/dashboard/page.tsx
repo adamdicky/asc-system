@@ -54,7 +54,7 @@ export default function AdminDashboard() {
               <CardTitle className="text-sm font-medium">Ongoing Job Cards</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">5</div>
+              <div className="text-2xl font-bold text-blue-600">7</div>
               <p className="text-xs text-muted-foreground">In Progress</p>
             </CardContent>
           </Card>
