@@ -7,15 +7,10 @@ import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react' // Use lucide-react for icons
 
 const navLinks = [
-  { name: 'Customer Registry', href: '/admin/customers' },
-  { name: 'Appointment Bookings', href: '/admin/appointments' },
-  { name: 'Job Cards', href: '/admin/jobcards' },
-  { name: 'Billing', href: '/admin/billings' },
-  { name: 'Analytics', href: '/admin/analytics' },
-    { name: 'Go to Mechanic', href: '/mechanic/dashboard' },
+  { name: 'Go to Admin', href: '/admin/dashboard' },
 ]
 
-export const AdminNavbar = () => {
+export const MechanicNavbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
