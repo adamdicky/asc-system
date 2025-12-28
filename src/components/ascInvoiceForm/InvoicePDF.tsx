@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
   footer: { position: 'absolute', bottom: 30, left: 30, right: 30, borderTopWidth: 1, borderColor: '#ccc', paddingTop: 10 },
   signatureRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 30 }
 })
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') return ''; // Browser can use relative /
+  return process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+};
 
 export const InvoicePDF = ({ data }: { data: BillingAppointment }) => (
   <Document>
@@ -35,7 +39,10 @@ export const InvoicePDF = ({ data }: { data: BillingAppointment }) => (
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.logoSection}>
-          <Image src="/asc-logo.png" style={styles.logo} />
+          <Image
+            src={`${getBaseUrl()}/ASC.png`} 
+            style={styles.logo}
+          />
           <View style={styles.headerText}>
             <Text style={styles.companyName}>ASC SYSTEM</Text>
             <Text style={styles.companyAddress}>Universiti Teknologi Malaysia Kuala Lumpur</Text>

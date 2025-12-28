@@ -29,13 +29,21 @@ const styles = StyleSheet.create({
   signatureRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 30 }
 })
 
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') return ''; // Browser can use relative /
+  return process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+};
+
 export const QuotationPDF = ({ data }: { data: BillingAppointment }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.logoSection}>
-          <Image src="/asc-logo.png" style={styles.logo} />
+          <Image
+            src={`${getBaseUrl()}/ASC.png`} 
+            style={styles.logo}
+          />
           <View style={styles.headerText}>
             <Text style={styles.companyName}>ASC SYSTEM</Text>
             <Text style={styles.companyAddress}>Universiti Teknologi Malaysia Kuala Lumpur</Text>
