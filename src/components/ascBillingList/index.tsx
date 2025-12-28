@@ -165,11 +165,23 @@ export const BillingList = ({ data, onOpenQuotation, onOpenInvoice, onSelectAppo
                 <td className="p-3 text-center">{getQuotationBadge(item.quotation_status)}</td>
                 <td className="p-3 text-right pr-6">
                   <div className="flex justify-end gap-2">
-                    <Button variant="outline" size="sm" className="h-7 text-[10px]" onClick={() => onOpenQuotation(item)}>
+                    {/* Quotation Button with fixed width */}
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="h-7 w-20 text-[10px]" 
+                      onClick={() => onOpenQuotation(item)}
+                    >
                       Quotation
                     </Button>
+                    
+                    {/* Invoice Button with same fixed width and emerald styling */}
                     {item.quotation_status === 'Accepted' && item.job_card_done && (
-                      <Button size="sm" className="h-7 text-[10px]" onClick={() => onOpenInvoice(item)}>
+                      <Button 
+                        size="sm" 
+                        className="h-7 w-20 text-[10px] bg-emerald-600 hover:bg-emerald-700 text-white" 
+                        onClick={() => onOpenInvoice(item)}
+                      >
                         Invoice
                       </Button>
                     )}

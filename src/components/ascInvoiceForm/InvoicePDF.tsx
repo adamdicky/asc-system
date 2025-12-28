@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   page: { padding: 30, fontSize: 10, fontFamily: 'Helvetica' },
   header: { marginBottom: 20, borderBottomWidth: 1, borderColor: '#ccc', paddingBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   logoSection: { flexDirection: 'row', alignItems: 'center' },
-  logo: { width: 50, height: 'auto', marginRight: 10 },
+  logo: { width: 90, height: 'auto', marginRight: 10 },
   headerText: { flexDirection: 'column' },
   companyName: { fontSize: 16, fontWeight: 'bold' },
   companyAddress: { fontSize: 9, color: '#666' },
@@ -45,8 +45,6 @@ export const InvoicePDF = ({ data }: { data: BillingAppointment }) => (
           <Text style={styles.title}>OFFICIAL INVOICE</Text>
           <Text style={styles.label}>INVOICE NO</Text>
           <Text style={styles.value}>{data.invoice_no || `INV-${data.quotation_no.split('-')[1]}`}</Text>
-          <Text style={styles.label}>DATE DELIVERED</Text>
-          <Text style={styles.value}>{data.date_delivered ? new Date(data.date_delivered).toLocaleDateString('en-GB') : 'N/A'}</Text>
         </View>
       </View>
 
@@ -63,12 +61,14 @@ export const InvoicePDF = ({ data }: { data: BillingAppointment }) => (
           <Text style={styles.value}>{data.brand} {data.model}</Text>
           <Text style={styles.label}>PLATE NO</Text>
           <Text style={styles.value}>{data.plate_no}</Text>
+          <Text style={styles.label}>MILEAGE</Text>
+          <Text style={styles.value}>{data.mileage?.toLocaleString() || '-'} KM</Text>
         </View>
         <View style={styles.col}>
           <Text style={styles.label}>ORDER PROCESSED BY</Text>
           <Text style={styles.value}>{data.admin_name}</Text>
-          <Text style={styles.label}>MILEAGE</Text>
-          <Text style={styles.value}>{data.mileage?.toLocaleString() || '-'} KM</Text>
+         <Text style={styles.label}>DATE DELIVERED</Text>
+          <Text style={styles.value}>{data.date_delivered ? new Date(data.date_delivered).toLocaleDateString('en-GB') : 'N/A'}</Text>
         </View>
       </View>
 
@@ -98,16 +98,14 @@ export const InvoicePDF = ({ data }: { data: BillingAppointment }) => (
       {/* Signatures */}
       <View style={styles.footer}>
         <View style={styles.signatureRow}>
-          <View style={{ width: '40%', alignItems: 'center' }}>
-            <View style={{ borderBottomWidth: 1, width: '100%', marginBottom: 5 }} />
-            <Text style={styles.label}>Customer Signature</Text>
-            <Text style={{ fontSize: 7, color: '#999' }}>(Acknowledgement of Receipt)</Text>
-          </View>
-          <View style={{ width: '40%', alignItems: 'center' }}>
-            <View style={{ borderBottomWidth: 1, width: '100%', marginBottom: 5 }} />
-            <Text style={styles.label}>Authorized Personnel</Text>
-            <Text style={styles.value}>{data.admin_name}</Text>
-          </View>
+                 <View style={{ width: '40%', alignItems: 'center' }}>
+                   <Text style={styles.label}>Work Order Completed By</Text>
+                   <Text style={styles.value}>{data.admin_name}</Text>
+                 </View>
+                 <View style={{ width: '40%', alignItems: 'center' }}>
+                   <Text style={styles.label}>Work Authorized By</Text>
+                   <Text style={styles.value}>{data.head_mechanic_name}</Text>
+                 </View>
         </View>
         <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 8, color: '#999' }}>
           Payment is due upon receipt. Please make cheques payable to "UTM Automotive Service Centre".
