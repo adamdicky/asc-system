@@ -141,7 +141,7 @@ export default function BillingPage() {
         <BillingList 
           data={mockBillingData}
           onOpenQuotation={(item) => { setSelectedQuote(item); setIsQuoteOpen(true) }}
-          onOpenInvoice={(item) => alert(`Opening Invoice for ${item.customer_name}`)} // Placeholder for Invoice logic
+          onOpenInvoice={(item) => { setSelectedInvoice(item); setIsInvoiceOpen(true) }}
           onSelectAppointment={setViewDetails}
         />
 

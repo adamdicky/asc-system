@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import { QuotationPDF } from './QuotationPDF'
 import { BillingAppointment } from '../ascBillingList'
-import { Download, FileText } from 'lucide-react'
+import { Download } from 'lucide-react'
 
 interface QuotationFormProps {
   data: BillingAppointment | null
@@ -28,15 +28,18 @@ export const QuotationForm = ({ data, isOpen, onClose }: QuotationFormProps) => 
               <DialogTitle>Quotation Details</DialogTitle>
               <DialogDescription>Reference: {data.quotation_no} (v{data.quotation_version})</DialogDescription>
             </div>
-            <PDFDownloadLink document={<QuotationPDF data={data} />} fileName={`QT-${data.quotation_no}.pdf`}>
-              {/* @ts-ignore */}
-              {({ loading }) => (
-                <Button size="sm" className="gap-2" disabled={loading}>
-                  <Download className="w-4 h-4" />
-                  {loading ? 'Preparing...' : 'Download PDF'}
-                </Button>
-              )}
-            </PDFDownloadLink>
+            {/* Added padding wrapper to prevent X button overlap */}
+            <div className="pr-8">
+              <PDFDownloadLink document={<QuotationPDF data={data} />} fileName={`QT-${data.quotation_no}.pdf`}>
+                {/* @ts-ignore */}
+                {({ loading }) => (
+                  <Button size="sm" className="gap-2" disabled={loading}>
+                    <Download className="w-4 h-4" />
+                    {loading ? 'Preparing...' : 'Export Quotation'}
+                  </Button>
+                )}
+              </PDFDownloadLink>
+            </div>
           </div>
         </DialogHeader>
 
@@ -59,6 +62,16 @@ export const QuotationForm = ({ data, isOpen, onClose }: QuotationFormProps) => 
               <div>
                 <p className="text-muted-foreground">Plate No</p>
                 <p className="font-medium font-mono">{data.plate_no}</p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">Mileage</p>
+                <p className="font-medium">{data.mileage ? `${data.mileage.toLocaleString()} KM` : '-'}</p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">Date Promised</p>
+                <p className="font-medium">
+                  {new Date(data.date).toLocaleDateString('en-GB')}
+                </p>
               </div>
             </div>
           </div>
