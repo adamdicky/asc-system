@@ -4,28 +4,25 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { Logo } from '@/components/Logo/Logo'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react' // Use lucide-react for icons
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { name: 'Customer Registry', href: '/admin/customers' },
-  { name: 'Appointment Bookings', href: '/admin/appointments' },
-  { name: 'Job Cards', href: '/admin/jobcards' },
-  { name: 'Billing', href: '/admin/billings' },
-  { name: 'Analytics', href: '/admin/analytics' },
-    { name: 'Go to Mechanic', href: '/mechanic/dashboard' },
-        { name: 'Go to Customer', href: '/customer/appointments' },
+    { name: 'Appointments', href: '/customer/appointments' },
+    { name: 'Book Appointment', href: '/customer/booking' },
+    { name: 'My Vehicles', href: '/customer/vehicles' },
+    { name: 'My Profile', href: '/customer/profile' },
+        { name: 'Go to Admin', href: '/admin/dashboard' },
 ]
 
-export const AdminNavbar = () => {
+export const CustomerNavbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
         {/* Left: Logo */}
-        <Link href="/admin/dashboard" className="flex items-center gap-2">
+        <Link href="/customer/dashboard" className="flex items-center gap-2">
           <Logo className="h-8 w-auto" />
-          {/* <span className="hidden font-bold sm:inline-block">Admin Panel</span> */}
         </Link>
 
         {/* Right: Desktop Navigation */}
