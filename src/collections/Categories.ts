@@ -7,19 +7,21 @@ import { slugField } from 'payload'
 export const Categories: CollectionConfig = {
   slug: 'categories',
   access: {
-    create: authenticated,
-    delete: authenticated,
-    read: anyone,
-    update: authenticated,
+    read: ()=> true,
   },
   admin: {
     useAsTitle: 'title',
+    defaultColumns:  ['name', 'description'],
   },
   fields: [
     {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'description',
+      type: 'textarea'
     },
     slugField({
       position: undefined,

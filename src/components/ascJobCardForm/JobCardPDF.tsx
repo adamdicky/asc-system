@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
   footer: { position: 'absolute', bottom: 30, left: 30, right: 30, textAlign: 'center', fontSize: 8, color: '#999', borderTopWidth: 1, paddingTop: 10 }
 })
 
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') return ''; // Browser can use relative /
+  return process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+};
+
 export const JobCardPDF = ({ data }: { data: JobCardData }) => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -40,8 +45,8 @@ export const JobCardPDF = ({ data }: { data: JobCardData }) => (
       <View style={styles.header}>
         {/* Assuming the logo is in public/asc-logo.png */}
         <Image 
-          src="/asc-logo.png" 
-          style={styles.logo} 
+          src={`${getBaseUrl()}/ASC.png`} 
+          style={styles.logo}
         />
         <Text style={styles.title}>AUTOMOTIVE SERVICE CENTRE (ASC)</Text>
         <Text style={styles.subtitle}>Universiti Teknologi Malaysia Kuala Lumpur</Text>

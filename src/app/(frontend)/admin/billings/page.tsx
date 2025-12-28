@@ -1,12 +1,14 @@
 'use client'
-
+import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import { AdminNavbar } from '@/components/ascAdminBar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BillingList, BillingAppointment } from '@/components/ascBillingList'
-import { QuotationForm } from '@/components/ascQuotationForm'
-import { InvoiceForm } from '@/components/ascInvoiceForm'
+// import { QuotationForm } from '@/components/ascQuotationForm'
+// import { InvoiceForm } from '@/components/ascInvoiceForm'
+const QuotationForm = dynamic(() => import('@/components/ascQuotationForm').then(mod => mod.QuotationForm), { ssr: false })
+const InvoiceForm = dynamic(() => import('@/components/ascInvoiceForm').then(mod => mod.InvoiceForm), { ssr: false })
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
 import { FileClock, AlertCircle, FileCheck, RefreshCw } from 'lucide-react'
