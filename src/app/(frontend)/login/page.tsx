@@ -6,6 +6,8 @@ import { Label } from '@/components/ui/label'
 import Link from 'next/link'
 import { Logo } from '@/components/Logo/Logo' // [cite: 890] Import the Logo component
 
+/* sem break changes */
+
 export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
