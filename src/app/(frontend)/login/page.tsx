@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import Link from 'next/link'
 import { Logo } from '@/components/Logo/Logo' // [cite: 890] Import the Logo component
 
-/* sem break changes */
+/* sem break changes | another change */
 
 export default function LoginPage() {
   return (
