@@ -30,6 +30,11 @@ export default buildConfig({
       // Feel free to delete this at any time. Simply remove the line below.
       beforeDashboard: ['@/components/BeforeDashboard'],
     },
+
+    routes: {
+      login: '/login', // Redirect unauthenticated admin traffic to custom page
+    },
+
     importMap: {
       baseDir: path.resolve(dirname),
     },
