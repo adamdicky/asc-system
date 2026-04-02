@@ -12,7 +12,7 @@ const redirects = async () => {
     source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
   }
 
-  //Blocking payload default login
+  //Blocking payload default login, change to /login
   const blockAdminLogin = {
     source: '/admin/login',
     destination: '/login',
