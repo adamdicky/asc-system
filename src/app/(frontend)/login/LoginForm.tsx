@@ -39,10 +39,19 @@ export default function LoginForm() {
         throw new Error(data.message || 'Invalid email or password.')
       }
 
+      const userRole = data.user.role
+
+      if (userRole === 'admin') {
+        router.push('/admin/dashboard') // sends admin to payloadcms panel
+      } else if (userRole === 'mechanic') {
+        router.push('/mechanic/dashboard') // sends mechanic to their dashboard
+      } else {
+        router.push('/customer/appointments') // sends customer to their dashboard
+      }
+
       // If successful, Payload sets secure HTTP only cookie.
       // Redirects to the admin dashboard (or another route depending on roles later).
-
-      router.push('/admin')
+      
       router.refresh() // Force nextjs to reevaluate auth state across the app
     } catch (err: any) {
       setError(err.message)

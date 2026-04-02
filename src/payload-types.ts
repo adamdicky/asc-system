@@ -423,7 +423,15 @@ export interface Category {
  */
 export interface User {
   id: number;
-  name?: string | null;
+  role: 'admin' | 'mechanic' | 'customer';
+  name: string;
+  'Phone Number': string;
+  'Admin ID'?: string | null;
+  'Admin Work ID'?: string | null;
+  'Customer ID'?: string | null;
+  'Matric or Staff ID'?: string | null;
+  'Mechanic ID'?: string | null;
+  'Mechanic Work ID'?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1382,7 +1390,15 @@ export interface CategoriesSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
   name?: T;
+  'Phone Number'?: T;
+  'Admin ID'?: T;
+  'Admin Work ID'?: T;
+  'Customer ID'?: T;
+  'Matric or Staff ID'?: T;
+  'Mechanic ID'?: T;
+  'Mechanic Work ID'?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
