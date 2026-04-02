@@ -20,6 +20,17 @@ const nextConfig = {
       }),
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/admin/login',
+        destination: '/login',
+        permanent: true, // 308 redirect
+      },
+    ]
+  },
+
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
