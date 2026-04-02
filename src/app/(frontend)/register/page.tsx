@@ -87,8 +87,8 @@ export default function RegisterForm() {
             <div className="flex justify-center mb-4">
               <Logo className="h-12 w-auto" />
             </div>
-            <CardTitle className="text-2xl font-bold tracking-tight">Create an Account</CardTitle>
-            <CardDescription>Register as a customer for the ASC System</CardDescription>
+            <CardTitle className="text-2xl font-bold tracking-tight">Create an account</CardTitle>
+            <CardDescription>Register an account for the ASC System</CardDescription>
           </CardHeader>
           
           <CardContent className="grid gap-4">
@@ -100,12 +100,12 @@ export default function RegisterForm() {
             
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="name">Full Name</Label>
-                <Input id="name" value={formData.name} onChange={handleChange} disabled={isLoading} required />
+                <Label htmlFor="name" >Full Name</Label>
+                <Input id="name" value={formData.name} onChange={handleChange} disabled={isLoading} placeholder='e.g. Ahmad Zakwan' required />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="phoneNumber">Phone Number</Label>
-                <Input id="phoneNumber" type="tel" value={formData.phoneNumber} onChange={handleChange} disabled={isLoading} required />
+                <Input id="phoneNumber" type="tel" value={formData.phoneNumber} onChange={handleChange} disabled={isLoading} placeholder='e.g. 0192152241' required />
               </div>
             </div>
 
