@@ -1,12 +1,12 @@
 import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
-import { textarea } from 'payload/shared'
+import { anyone } from '@/access/anyone'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   access: {
     admin: ({ req: {user} }) => user?.role === 'admin',
-    create: authenticated,
+    create: anyone,
     delete: authenticated,
     read: authenticated,
     update: authenticated,
@@ -17,7 +17,9 @@ export const Users: CollectionConfig = {
     useAsTitle: 'name',
   },
 
-  auth: true, //Automatically provisions email and password
+  auth: {
+    verify: true,
+  }, //Automatically provisions email and password
 
   fields: [
     {
@@ -25,6 +27,10 @@ export const Users: CollectionConfig = {
       type: 'select',
       required: true,
       defaultValue: 'customer',
+      access: {
+        create: ({req: {user}}) => user?.role === 'admin',
+        update: ({req: {user}}) => user?.role === 'admin',
+      }, //Technical guard to prevent non admins from choosing role during creation
       options: [
         {label: 'Admin', value: 'admin'},
         {label: 'Mechanic', value: 'mechanic'},

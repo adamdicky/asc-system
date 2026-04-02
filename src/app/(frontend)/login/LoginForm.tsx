@@ -122,7 +122,7 @@ export default function LoginForm() {
             </Button>
             <div className="text-center text-sm text-muted-foreground">
               Don&apos;t have a registered account?{" "}
-              <Link href="/register-vehicle" className="font-medium text-primary hover:underline">
+              <Link href="/register" className="font-medium text-primary hover:underline">
                 Register here
               </Link>
             </div>
