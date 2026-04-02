@@ -12,7 +12,14 @@ const redirects = async () => {
     source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
   }
 
-  const redirects = [internetExplorerRedirect]
+  //Blocking payload default login, change to /login
+  const blockAdminLogin = {
+    source: '/admin/login',
+    destination: '/login',
+    permanent: true, //HTTP 308 permanent redirect
+  }
+
+  const redirects = [internetExplorerRedirect, blockAdminLogin]
 
   return redirects
 }
