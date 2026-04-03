@@ -26,6 +26,7 @@ export const Users: CollectionConfig = {
       name: 'role',
       type: 'select',
       required: true,
+      saveToJWT: true,
       defaultValue: 'customer',
       access: {
         create: ({req: {user}}) => user?.role === 'admin',
